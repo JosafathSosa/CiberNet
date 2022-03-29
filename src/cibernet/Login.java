@@ -51,11 +51,11 @@ public class Login extends javax.swing.JFrame {
 
         lblImagenLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/login.png"))); // NOI18N
 
-        btnLogin.setBackground(new java.awt.Color(51, 51, 255));
+        btnLogin.setBackground(new java.awt.Color(153, 153, 255));
         btnLogin.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnLogin.setForeground(new java.awt.Color(0, 0, 0));
         btnLogin.setText("Iniciar Sesion");
-        btnLogin.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnLogin.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnLogin.setSize(new java.awt.Dimension(90, 24));
         btnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -89,7 +89,7 @@ public class Login extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContenedorLoginLayout.createSequentialGroup()
                 .addGap(56, 56, 56)
                 .addComponent(lblImagenLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                 .addGroup(ContenedorLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUsuario1)
                     .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
