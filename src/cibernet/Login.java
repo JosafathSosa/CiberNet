@@ -56,7 +56,7 @@ public class Login extends javax.swing.JFrame {
         btnLogin.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnLogin.setForeground(new java.awt.Color(0, 0, 0));
         btnLogin.setText("Iniciar Sesion");
-        btnLogin.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnLogin.setBorder(null);
         btnLogin.setSize(new java.awt.Dimension(90, 24));
         btnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -73,7 +73,7 @@ public class Login extends javax.swing.JFrame {
         ContenedorLoginLayout.setHorizontalGroup(
             ContenedorLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContenedorLoginLayout.createSequentialGroup()
-                .addContainerGap(214, Short.MAX_VALUE)
+                .addContainerGap(218, Short.MAX_VALUE)
                 .addComponent(btnLogin)
                 .addGap(209, 209, 209))
             .addGroup(ContenedorLoginLayout.createSequentialGroup()
