@@ -25,8 +25,11 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
     int i = 1;
 
     //Mando a llamar ventanas emergentes
+    Login lg = new Login();
     VentantaUsuario US = new VentantaUsuario();
     VentanaUsuario2 US2 = new VentanaUsuario2();
+    VentanaUsuario3 US3 = new VentanaUsuario3();
+    VentanaUsuario4 US4 = new VentanaUsuario4();
 
     //Mando a llamar conexion de base de datos
     ConexionDB bd = new ConexionDB();
@@ -44,6 +47,7 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
 
         MostrarTabla("");
     }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -64,6 +68,7 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
         BarraNavegacion = new javax.swing.JPanel();
         lblReloj = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,9 +88,10 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
         ));
         Datos.setViewportView(tablaha);
 
-        btnIniciarCronometro.setBackground(new java.awt.Color(51, 51, 255));
+        btnIniciarCronometro.setBackground(new java.awt.Color(153, 153, 255));
         btnIniciarCronometro.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 24)); // NOI18N
         btnIniciarCronometro.setText("Iniciar");
+        btnIniciarCronometro.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnIniciarCronometro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnIniciarCronometroMouseClicked(evt);
@@ -97,9 +103,10 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
             }
         });
 
-        btnCobrar.setBackground(new java.awt.Color(51, 51, 255));
+        btnCobrar.setBackground(new java.awt.Color(153, 153, 255));
         btnCobrar.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 24)); // NOI18N
         btnCobrar.setText("Cobrar");
+        btnCobrar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnCobrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnCobrarMouseClicked(evt);
@@ -135,30 +142,34 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
         PanelPrincipalLayout.setHorizontalGroup(
             PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelPrincipalLayout.createSequentialGroup()
-                .addComponent(Datos, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Datos, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelPrincipalLayout.createSequentialGroup()
-                        .addGroup(PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnIniciarCronometro)
-                            .addComponent(txtCopias, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnCobrar))
-                    .addGroup(PanelPrincipalLayout.createSequentialGroup()
                         .addGroup(PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(PanelPrincipalLayout.createSequentialGroup()
+                                .addComponent(btnIniciarCronometro)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnCobrar))
+                            .addGroup(PanelPrincipalLayout.createSequentialGroup()
+                                .addGroup(PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(PanelPrincipalLayout.createSequentialGroup()
+                                .addGap(31, 31, 31)
+                                .addComponent(boxMaquinas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtMaquina, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(55, 55, 55)
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)))
+                        .addContainerGap())
                     .addGroup(PanelPrincipalLayout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(boxMaquinas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtMaquina, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(55, 55, 55)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtTotal, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGap(23, 23, 23)
+                        .addComponent(txtCopias, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         PanelPrincipalLayout.setVerticalGroup(
             PanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,27 +205,43 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
         jLabel1.setText("CIBERNET");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
+        jButton1.setBackground(new java.awt.Color(51, 51, 255));
+        jButton1.setFont(new java.awt.Font("Arial Rounded MT Bold", 3, 11)); // NOI18N
+        jButton1.setText("Cerrar Sesion");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout BarraNavegacionLayout = new javax.swing.GroupLayout(BarraNavegacion);
         BarraNavegacion.setLayout(BarraNavegacionLayout);
         BarraNavegacionLayout.setHorizontalGroup(
             BarraNavegacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BarraNavegacionLayout.createSequentialGroup()
-                .addGap(140, 140, 140)
+                .addContainerGap()
+                .addComponent(jButton1)
+                .addGap(21, 21, 21)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 382, Short.MAX_VALUE)
                 .addComponent(lblReloj, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         BarraNavegacionLayout.setVerticalGroup(
             BarraNavegacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(BarraNavegacionLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BarraNavegacionLayout.createSequentialGroup()
+                .addGroup(BarraNavegacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(BarraNavegacionLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, BarraNavegacionLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, BarraNavegacionLayout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(lblReloj, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(BarraNavegacionLayout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(lblReloj, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -245,29 +272,85 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
         num = boxMaquinas.getSelectedItem().toString();
         txtMaquina.setText(num);
 
-        try {
+        //Validacion de si una maquina ya esta en uso
+        if (US.tiempo.isRunning() && boxMaquinas.getSelectedItem().toString().equals("1")) {
+            JOptionPane.showMessageDialog(null, "La maquina 1 actualmente esta en uso");
 
-            PreparedStatement pps = con.prepareStatement("INSERT INTO CiberNet (ID_Maquina, Hora_entrada) VALUES (?,?);");
-            pps.setString(1, boxMaquinas.getSelectedItem().toString());
-            pps.setString(2, lblReloj.getText());
+        } else if (boxMaquinas.getSelectedItem().toString().equals("1")) {
+            try {
+                
+                //Coloca el id y la hora de entrada
+                PreparedStatement pps = con.prepareStatement("INSERT INTO CiberNet (ID_Maquina, Hora_entrada) VALUES (?,?);");
+                pps.setString(1, boxMaquinas.getSelectedItem().toString());//Coloca la maquina del box seleccionado
+                pps.setString(2, lblReloj.getText());//Coloca la hora del lbl del reloj
 
-            pps.executeUpdate();
-            MostrarTabla("");
+                pps.executeUpdate();//Ejecuta el statement y muestra la tabla
+                MostrarTabla("");
 
-        } catch (SQLException ex) {
-            Logger.getLogger(Ventana_Administrador.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            } catch (SQLException ex) {
+                Logger.getLogger(Ventana_Administrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
-        if (boxMaquinas.getSelectedItem().toString().equals("1")) {
-            US.setVisible(true);
+            US.setVisible(true);//Se abre la ventana y empieza a correr el tiempo
             US.tiempo.start();
+
+        } else if (US2.tiempo.isRunning() && boxMaquinas.getSelectedItem().toString().equals("2")) {
+            JOptionPane.showMessageDialog(null, "La maquina 2 actualmente esta en uso");
+
         } else if (boxMaquinas.getSelectedItem().toString().equals("2")) {
+            try {
+
+                PreparedStatement pps = con.prepareStatement("INSERT INTO CiberNet (ID_Maquina, Hora_entrada) VALUES (?,?);");
+                pps.setString(1, boxMaquinas.getSelectedItem().toString());
+                pps.setString(2, lblReloj.getText());
+
+                pps.executeUpdate();
+                MostrarTabla("");
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Ventana_Administrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
             US2.setVisible(true);
             US2.tiempo.start();
+        } else if (US3.tiempo.isRunning() && boxMaquinas.getSelectedItem().toString().equals("3")) {
+            JOptionPane.showMessageDialog(null, "La maquina 3 actualmente esta en uso");
+
         } else if (boxMaquinas.getSelectedItem().toString().equals("3")) {
+            try {
+
+                PreparedStatement pps = con.prepareStatement("INSERT INTO CiberNet (ID_Maquina, Hora_entrada) VALUES (?,?);");
+                pps.setString(1, boxMaquinas.getSelectedItem().toString());
+                pps.setString(2, lblReloj.getText());
+
+                pps.executeUpdate();
+                MostrarTabla("");
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Ventana_Administrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            US3.setVisible(true);
+            US3.tiempo.start();
+        } else if (US4.tiempo.isRunning() && boxMaquinas.getSelectedItem().toString().equals("4")) {
+            JOptionPane.showMessageDialog(null, "La maquina 4 actualmente esta en uso");
 
         } else if (boxMaquinas.getSelectedItem().toString().equals("4")) {
+            try {
 
+                PreparedStatement pps = con.prepareStatement("INSERT INTO CiberNet (ID_Maquina, Hora_entrada) VALUES (?,?);");
+                pps.setString(1, boxMaquinas.getSelectedItem().toString());
+                pps.setString(2, lblReloj.getText());
+
+                pps.executeUpdate();
+                MostrarTabla("");
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Ventana_Administrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            US4.setVisible(true);
+            US4.tiempo.start();
         }
 
 
@@ -292,7 +375,7 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
         } else if (US.minutos > 10 && US.minutos <= 30) {
             totpagar += 15 + copias;
         }
-        
+
         //Condiciones para ver cual maquina cobrar, cerrar y guardar datos
         if (US.tiempo.isRunning() && boxMaquinas.getSelectedItem().toString().equals("1")) {
             try {
@@ -338,12 +421,61 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
             US2.minutos = 0;
             US2.horas = 0;
             totpagar = 0;
+        } else if (US3.tiempo.isRunning() && boxMaquinas.getSelectedItem().toString().equals("3")) {
+            try {
+
+                pps = con.prepareStatement("UPDATE CiberNet SET ID_Maquina= '" + boxMaquinas.getSelectedItem().toString() + "', Hora_salida= '" + lblReloj.getText() + "', Copias= '" + txtCopias.getText() + " Copias" + "', Total='" + "$" + totpagar + " Pesos" + "' WHERE ID_Maquina= '" + boxMaquinas.getSelectedItem().toString() + "'");
+                pps.executeUpdate();
+
+                MostrarTabla("");
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Ventana_Administrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            txtTotal.setText("" + totpagar);
+
+            US3.tiempo.stop();
+            US3.dispose();
+
+            US3.centecimas_seg = 0;
+            US3.segundo = 0;
+            US3.minutos = 0;
+            US3.horas = 0;
+            totpagar = 0;
+        } else if (US4.tiempo.isRunning() && boxMaquinas.getSelectedItem().toString().equals("4")) {
+            try {
+
+                pps = con.prepareStatement("UPDATE CiberNet SET ID_Maquina= '" + boxMaquinas.getSelectedItem().toString() + "', Hora_salida= '" + lblReloj.getText() + "', Copias= '" + txtCopias.getText() + " Copias" + "', Total='" + "$" + totpagar + " Pesos" + "' WHERE ID_Maquina= '" + boxMaquinas.getSelectedItem().toString() + "'");
+                pps.executeUpdate();
+
+                MostrarTabla("");
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Ventana_Administrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            txtTotal.setText("" + totpagar);
+
+            US4.tiempo.stop();
+            US4.dispose();
+
+            US4.centecimas_seg = 0;
+            US4.segundo = 0;
+            US4.minutos = 0;
+            US4.horas = 0;
+            totpagar = 0;
         } else {
             JOptionPane.showMessageDialog(null, "Selecciona la maquina a cobrar correctamente");
         }
 
 
     }//GEN-LAST:event_btnCobrarMouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        this.dispose();
+        lg.setVisible(true);
+    }//GEN-LAST:event_jButton1MouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -398,6 +530,7 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
     private javax.swing.JComboBox<String> boxMaquinas;
     private javax.swing.JButton btnCobrar;
     private javax.swing.JButton btnIniciarCronometro;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
