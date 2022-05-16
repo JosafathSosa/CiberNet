@@ -1,8 +1,5 @@
 package cibernet;
 
-import java.awt.BorderLayout;
-import javax.swing.Timer;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,40 +7,47 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.util.*;
 
 public class Ventana_Administrador extends javax.swing.JFrame implements Runnable {
-//Mando a llamar conexion de base de datos
 
+    //Mando a llamar conexion de base de datos
     ConexionDB bd = new ConexionDB();
     Connection con = bd.getConnection();
 
+    //Variables del reloj local
     String hora, minuto, segundos, ampm;
     Calendar calendario;
     Thread h1;
+
     double cobrar = 15;
-    double totpagar = 0;
-    double totpagar2 = 0;
-    double totpagar3 = 0;
-    double totpagar4 = 0;
+
+    //Variable que guarda el total de cada maquina
+    double totpagar;
+    double totpagar2;
+    double totpagar3;
+    double totpagar4;
     double i = 1;
 
     double totSemana = 0;
     double totalCopias = 0;
 
+    //Variables para guardar la hora de entrada en distintas computadoras
     String hora_entrada;
     String hora_entrada2;
     String hora_entrada3;
     String hora_entrada4;
+
+    //Variable que guarda el tiempo que el usuario elige para su servicio
     String tiempo;
+    String tiempo2;
+    String tiempo3;
+    String tiempo4;
 
     //Mando a llamar ventanas emergentes
     Login lg = new Login();
-
     VentantaUsuario US = new VentantaUsuario();
     VentanaUsuario2 US2 = new VentanaUsuario2();
     VentanaUsuario3 US3 = new VentanaUsuario3();
@@ -349,7 +353,7 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
 
         //Validacion de si una maquina ya esta en uso
         if (US.tiempo.isRunning() && boxMaquinas.getSelectedItem().toString().equals("1")) {
-            JOptionPane.showMessageDialog(null, "La maquina 1 actualmente esta en uso");
+            JOptionPane.showMessageDialog(null, "La máquina 1 actualmente esta en uso");
 
         } else if (boxMaquinas.getSelectedItem().toString().equals("1") && boxTiempo.getSelectedItem().toString().equals("Tiempo libre")) {
             try {
@@ -372,7 +376,7 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
             US.tiempo.start();
 
         } else if (US2.tiempo.isRunning() && boxMaquinas.getSelectedItem().toString().equals("2")) {
-            JOptionPane.showMessageDialog(null, "La maquina 2 actualmente esta en uso");
+            JOptionPane.showMessageDialog(null, "La máquina 2 actualmente esta en uso");
 
         } else if (boxMaquinas.getSelectedItem().toString().equals("2") && boxTiempo.getSelectedItem().toString().equals("Tiempo libre")) {
             try {
@@ -393,7 +397,7 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
             US2.setVisible(true);
             US2.tiempo.start();
         } else if (US3.tiempo.isRunning() && boxMaquinas.getSelectedItem().toString().equals("3")) {
-            JOptionPane.showMessageDialog(null, "La maquina 3 actualmente esta en uso");
+            JOptionPane.showMessageDialog(null, "La máquina 3 actualmente esta en uso");
 
         } else if (boxMaquinas.getSelectedItem().toString().equals("3") && boxTiempo.getSelectedItem().toString().equals("Tiempo libre")) {
             try {
@@ -414,7 +418,7 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
             US3.setVisible(true);
             US3.tiempo.start();
         } else if (US4.tiempo.isRunning() && boxMaquinas.getSelectedItem().toString().equals("4")) {
-            JOptionPane.showMessageDialog(null, "La maquina 4 actualmente esta en uso");
+            JOptionPane.showMessageDialog(null, "La áaquina 4 actualmente esta en uso");
 
         } else if (boxMaquinas.getSelectedItem().toString().equals("4") && boxTiempo.getSelectedItem().toString().equals("Tiempo libre")) {
             try {
@@ -441,6 +445,7 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
 
     }//GEN-LAST:event_btnIniciarCronometroMouseClicked
 
+    //Metodo incluido en el boton de arriba de iniciar
     private void cobrarTiempo() {
         if (boxMaquinas.getSelectedItem().toString().equals("1") && boxTiempo.getSelectedItem().toString().equals("10 minutos")) {
             try {
@@ -459,9 +464,14 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
             } catch (SQLException ex) {
                 Logger.getLogger(Ventana_Administrador.class.getName()).log(Level.SEVERE, null, ex);
             }
+            //Guardo el valor de texto en una nueva clase en un metodo set
+            textoTiempo txt = new textoTiempo();
+            txt.setTexto(tiempo);
+            
 
             US.setVisible(true);//Se abre la ventana y empieza a correr el tiempo
             US.tiempo.start();
+            
         } else if (boxMaquinas.getSelectedItem().toString().equals("1") && boxTiempo.getSelectedItem().toString().equals("20 minutos")) {
             try {
 
@@ -479,6 +489,9 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
             } catch (SQLException ex) {
                 Logger.getLogger(Ventana_Administrador.class.getName()).log(Level.SEVERE, null, ex);
             }
+                        //Guardo el valor de texto en una nueva clase en un metodo set
+            textoTiempo txt = new textoTiempo();
+            txt.setTexto(tiempo);
 
             US.setVisible(true);//Se abre la ventana y empieza a correr el tiempo
             US.tiempo.start();
@@ -499,6 +512,9 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
             } catch (SQLException ex) {
                 Logger.getLogger(Ventana_Administrador.class.getName()).log(Level.SEVERE, null, ex);
             }
+                        //Guardo el valor de texto en una nueva clase en un metodo set
+            textoTiempo txt = new textoTiempo();
+            txt.setTexto(tiempo);
 
             US.setVisible(true);//Se abre la ventana y empieza a correr el tiempo
             US.tiempo.start();
@@ -519,6 +535,9 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
             } catch (SQLException ex) {
                 Logger.getLogger(Ventana_Administrador.class.getName()).log(Level.SEVERE, null, ex);
             }
+                        //Guardo el valor de texto en una nueva clase en un metodo set
+            textoTiempo txt = new textoTiempo();
+            txt.setTexto(tiempo);
 
             US.setVisible(true);//Se abre la ventana y empieza a correr el tiempo
             US.tiempo.start();
@@ -531,6 +550,7 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
                 pps.setString(2, lblReloj.getText());//Coloca la hora del lbl del reloj
 
                 hora_entrada2 = lblReloj.getText(); //guardo hora de entrada
+                tiempo2 = boxTiempo.getSelectedItem().toString();
 
                 pps.executeUpdate();//Ejecuta el statement y muestra la tabla
                 MostrarTabla("");
@@ -538,6 +558,9 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
             } catch (SQLException ex) {
                 Logger.getLogger(Ventana_Administrador.class.getName()).log(Level.SEVERE, null, ex);
             }
+                        //Guardo el valor de texto en una nueva clase en un metodo set
+            textoTiempo txt = new textoTiempo();
+            txt.setTexto(tiempo2);
 
             US2.setVisible(true);//Se abre la ventana y empieza a correr el tiempo
             US2.tiempo.start();
@@ -550,6 +573,7 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
                 pps.setString(2, lblReloj.getText());//Coloca la hora del lbl del reloj
 
                 hora_entrada2 = lblReloj.getText(); //guardo hora de entrada
+                tiempo2 = boxTiempo.getSelectedItem().toString();
 
                 pps.executeUpdate();//Ejecuta el statement y muestra la tabla
                 MostrarTabla("");
@@ -557,6 +581,9 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
             } catch (SQLException ex) {
                 Logger.getLogger(Ventana_Administrador.class.getName()).log(Level.SEVERE, null, ex);
             }
+                        //Guardo el valor de texto en una nueva clase en un metodo set
+            textoTiempo txt = new textoTiempo();
+            txt.setTexto(tiempo2);
 
             US2.setVisible(true);//Se abre la ventana y empieza a correr el tiempo
             US2.tiempo.start();
@@ -569,6 +596,7 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
                 pps.setString(2, lblReloj.getText());//Coloca la hora del lbl del reloj
 
                 hora_entrada2 = lblReloj.getText(); //guardo hora de entrada
+                tiempo2 = boxTiempo.getSelectedItem().toString();
 
                 pps.executeUpdate();//Ejecuta el statement y muestra la tabla
                 MostrarTabla("");
@@ -576,6 +604,9 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
             } catch (SQLException ex) {
                 Logger.getLogger(Ventana_Administrador.class.getName()).log(Level.SEVERE, null, ex);
             }
+                        //Guardo el valor de texto en una nueva clase en un metodo set
+            textoTiempo txt = new textoTiempo();
+            txt.setTexto(tiempo2);
 
             US2.setVisible(true);//Se abre la ventana y empieza a correr el tiempo
             US2.tiempo.start();
@@ -588,6 +619,7 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
                 pps.setString(2, lblReloj.getText());//Coloca la hora del lbl del reloj
 
                 hora_entrada2 = lblReloj.getText(); //guardo hora de entrada
+                tiempo2 = boxTiempo.getSelectedItem().toString();
 
                 pps.executeUpdate();//Ejecuta el statement y muestra la tabla
                 MostrarTabla("");
@@ -595,6 +627,9 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
             } catch (SQLException ex) {
                 Logger.getLogger(Ventana_Administrador.class.getName()).log(Level.SEVERE, null, ex);
             }
+                        //Guardo el valor de texto en una nueva clase en un metodo set
+            textoTiempo txt = new textoTiempo();
+            txt.setTexto(tiempo2);
 
             US2.setVisible(true);//Se abre la ventana y empieza a correr el tiempo
             US2.tiempo.start();
@@ -607,6 +642,7 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
                 pps.setString(2, lblReloj.getText());//Coloca la hora del lbl del reloj
 
                 hora_entrada3 = lblReloj.getText(); //guardo hora de entrada
+                tiempo3 = boxTiempo.getSelectedItem().toString();
 
                 pps.executeUpdate();//Ejecuta el statement y muestra la tabla
                 MostrarTabla("");
@@ -614,6 +650,9 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
             } catch (SQLException ex) {
                 Logger.getLogger(Ventana_Administrador.class.getName()).log(Level.SEVERE, null, ex);
             }
+                        //Guardo el valor de texto en una nueva clase en un metodo set
+            textoTiempo txt = new textoTiempo();
+            txt.setTexto(tiempo3);
 
             US3.setVisible(true);//Se abre la ventana y empieza a correr el tiempo
             US3.tiempo.start();
@@ -626,6 +665,7 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
                 pps.setString(2, lblReloj.getText());//Coloca la hora del lbl del reloj
 
                 hora_entrada3 = lblReloj.getText(); //guardo hora de entrada
+                tiempo3 = boxTiempo.getSelectedItem().toString();
 
                 pps.executeUpdate();//Ejecuta el statement y muestra la tabla
                 MostrarTabla("");
@@ -633,6 +673,9 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
             } catch (SQLException ex) {
                 Logger.getLogger(Ventana_Administrador.class.getName()).log(Level.SEVERE, null, ex);
             }
+                        //Guardo el valor de texto en una nueva clase en un metodo set
+            textoTiempo txt = new textoTiempo();
+            txt.setTexto(tiempo3);
 
             US3.setVisible(true);//Se abre la ventana y empieza a correr el tiempo
             US3.tiempo.start();
@@ -645,6 +688,7 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
                 pps.setString(2, lblReloj.getText());//Coloca la hora del lbl del reloj
 
                 hora_entrada3 = lblReloj.getText(); //guardo hora de entrada
+                tiempo3 = boxTiempo.getSelectedItem().toString();
 
                 pps.executeUpdate();//Ejecuta el statement y muestra la tabla
                 MostrarTabla("");
@@ -652,6 +696,9 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
             } catch (SQLException ex) {
                 Logger.getLogger(Ventana_Administrador.class.getName()).log(Level.SEVERE, null, ex);
             }
+                        //Guardo el valor de texto en una nueva clase en un metodo set
+            textoTiempo txt = new textoTiempo();
+            txt.setTexto(tiempo3);
 
             US3.setVisible(true);//Se abre la ventana y empieza a correr el tiempo
             US3.tiempo.start();
@@ -664,6 +711,7 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
                 pps.setString(2, lblReloj.getText());//Coloca la hora del lbl del reloj
 
                 hora_entrada3 = lblReloj.getText(); //guardo hora de entrada
+                tiempo3 = boxTiempo.getSelectedItem().toString();
 
                 pps.executeUpdate();//Ejecuta el statement y muestra la tabla
                 MostrarTabla("");
@@ -671,6 +719,9 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
             } catch (SQLException ex) {
                 Logger.getLogger(Ventana_Administrador.class.getName()).log(Level.SEVERE, null, ex);
             }
+                        //Guardo el valor de texto en una nueva clase en un metodo set
+            textoTiempo txt = new textoTiempo();
+            txt.setTexto(tiempo3);
 
             US3.setVisible(true);//Se abre la ventana y empieza a correr el tiempo
             US3.tiempo.start();
@@ -683,6 +734,7 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
                 pps.setString(2, lblReloj.getText());//Coloca la hora del lbl del reloj
 
                 hora_entrada4 = lblReloj.getText(); //guardo hora de entrada
+                tiempo4 = boxTiempo.getSelectedItem().toString();
 
                 pps.executeUpdate();//Ejecuta el statement y muestra la tabla
                 MostrarTabla("");
@@ -690,6 +742,9 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
             } catch (SQLException ex) {
                 Logger.getLogger(Ventana_Administrador.class.getName()).log(Level.SEVERE, null, ex);
             }
+                        //Guardo el valor de texto en una nueva clase en un metodo set
+            textoTiempo txt = new textoTiempo();
+            txt.setTexto(tiempo4);
 
             US4.setVisible(true);//Se abre la ventana y empieza a correr el tiempo
             US4.tiempo.start();
@@ -702,6 +757,7 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
                 pps.setString(2, lblReloj.getText());//Coloca la hora del lbl del reloj
 
                 hora_entrada4 = lblReloj.getText(); //guardo hora de entrada
+                tiempo4 = boxTiempo.getSelectedItem().toString();
 
                 pps.executeUpdate();//Ejecuta el statement y muestra la tabla
                 MostrarTabla("");
@@ -709,6 +765,9 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
             } catch (SQLException ex) {
                 Logger.getLogger(Ventana_Administrador.class.getName()).log(Level.SEVERE, null, ex);
             }
+                        //Guardo el valor de texto en una nueva clase en un metodo set
+            textoTiempo txt = new textoTiempo();
+            txt.setTexto(tiempo4);
 
             US4.setVisible(true);//Se abre la ventana y empieza a correr el tiempo
             US4.tiempo.start();
@@ -721,6 +780,7 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
                 pps.setString(2, lblReloj.getText());//Coloca la hora del lbl del reloj
 
                 hora_entrada4 = lblReloj.getText(); //guardo hora de entrada
+                tiempo4 = boxTiempo.getSelectedItem().toString();
 
                 pps.executeUpdate();//Ejecuta el statement y muestra la tabla
                 MostrarTabla("");
@@ -728,6 +788,9 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
             } catch (SQLException ex) {
                 Logger.getLogger(Ventana_Administrador.class.getName()).log(Level.SEVERE, null, ex);
             }
+                        //Guardo el valor de texto en una nueva clase en un metodo set
+            textoTiempo txt = new textoTiempo();
+            txt.setTexto(tiempo4);
 
             US4.setVisible(true);//Se abre la ventana y empieza a correr el tiempo
             US4.tiempo.start();
@@ -740,6 +803,7 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
                 pps.setString(2, lblReloj.getText());//Coloca la hora del lbl del reloj
 
                 hora_entrada4 = lblReloj.getText(); //guardo hora de entrada
+                tiempo4 = boxTiempo.getSelectedItem().toString();
 
                 pps.executeUpdate();//Ejecuta el statement y muestra la tabla
                 MostrarTabla("");
@@ -747,6 +811,9 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
             } catch (SQLException ex) {
                 Logger.getLogger(Ventana_Administrador.class.getName()).log(Level.SEVERE, null, ex);
             }
+                        //Guardo el valor de texto en una nueva clase en un metodo set
+            textoTiempo txt = new textoTiempo();
+            txt.setTexto(tiempo4);
 
             US4.setVisible(true);//Se abre la ventana y empieza a correr el tiempo
             US4.tiempo.start();
@@ -808,7 +875,9 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
 
     private void CobrarDiezMinutos() {
         if (US.minutos == 10 && tiempo.equals("10 minutos")) {
+
             CobrarMaquina1();
+
             try {
 
                 PreparedStatement pps = con.prepareStatement("UPDATE CiberNet SET Hora_salida= '" + lblReloj.getText() + "', Copias= '" + txtCopias.getText() + " Copias" + "', Total='" + "$" + totpagar + " Pesos" + "' WHERE Hora_entrada= '" + hora_entrada + "'");
@@ -822,6 +891,7 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
 
             txtTotal.setText("$" + totpagar + " pesos ");
             totSemana += totpagar;
+            System.out.println(totpagar);
 
             //Manda y guarda el contenido de la variable totalsemana
             temporal tm = new temporal();
@@ -836,8 +906,9 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
             US.horas = 0;
             totpagar = 0;
 
+            tiempo = "";
             hora_entrada = "";
-        } else if (US2.minutos == 10) {
+        } else if (US2.minutos == 10 && tiempo2.equals("10 minutos")) {
             CobrarMaquina2();
             try {
 
@@ -866,8 +937,9 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
             US2.horas = 0;
             totpagar2 = 0;
 
+            tiempo2 = "";
             hora_entrada2 = "";
-        } else if (US3.minutos == 10) {
+        } else if (US3.minutos == 10 && tiempo3.equals("10 minutos")) {
             CobrarMaquina3();
             try {
 
@@ -880,7 +952,7 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
                 Logger.getLogger(Ventana_Administrador.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            txtTotal.setText("$" + totpagar3 + " pesos ");
+            txtTotal.setText(totpagar3 + " pesos ");
             totSemana += totpagar3;
 
             //Manda y guarda el contenido de la variable totalsemana
@@ -896,8 +968,10 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
             US3.horas = 0;
             totpagar3 = 0;
 
+            tiempo = "";
             hora_entrada3 = "";
-        } else if (US4.minutos == 10) {
+
+        } else if (US4.minutos == 10 && tiempo4.equals("10 minutos")) {
             CobrarMaquina4();
             try {
 
@@ -926,12 +1000,13 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
             US4.horas = 0;
             totpagar4 = 0;
 
+            tiempo4 = "";
             hora_entrada4 = "";
         }
     }
 
     private void CobrarVeinteMinutos() {
-        if (US.minutos == 10) {
+        if (US.minutos == 20 && tiempo.equals("20 minutos")) {
             CobrarMaquina1();
             try {
 
@@ -960,132 +1035,9 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
             US.horas = 0;
             totpagar = 0;
 
+            tiempo = "";
             hora_entrada = "";
-        } else if (US2.minutos == 10) {
-            CobrarMaquina2();
-            try {
-
-                PreparedStatement pps = con.prepareStatement("UPDATE CiberNet SET Hora_salida= '" + lblReloj.getText() + "', Copias= '" + txtCopias.getText() + " Copias" + "', Total='" + "$" + totpagar + " Pesos" + "' WHERE Hora_entrada= '" + hora_entrada + "'");
-                pps.executeUpdate();
-
-                MostrarTabla("");
-
-            } catch (SQLException ex) {
-                Logger.getLogger(Ventana_Administrador.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            txtTotal.setText("$" + totpagar2 + " pesos ");
-            totSemana += totpagar2;
-
-            //Manda y guarda el contenido de la variable totalsemana
-            temporal tm = new temporal();
-            tm.setTotSemana("" + totSemana);
-
-            US2.tiempo.stop();
-            US2.dispose();
-
-            US2.centecimas_seg = 0;
-            US2.segundo = 0;
-            US2.minutos = 0;
-            US2.horas = 0;
-            totpagar2 = 0;
-
-            hora_entrada2 = "";
-        } else if (US3.minutos == 10) {
-            CobrarMaquina3();
-            try {
-
-                PreparedStatement pps = con.prepareStatement("UPDATE CiberNet SET Hora_salida= '" + lblReloj.getText() + "', Copias= '" + txtCopias.getText() + " Copias" + "', Total='" + "$" + totpagar + " Pesos" + "' WHERE Hora_entrada= '" + hora_entrada + "'");
-                pps.executeUpdate();
-
-                MostrarTabla("");
-
-            } catch (SQLException ex) {
-                Logger.getLogger(Ventana_Administrador.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            txtTotal.setText("$" + totpagar3 + " pesos ");
-            totSemana += totpagar3;
-
-            //Manda y guarda el contenido de la variable totalsemana
-            temporal tm = new temporal();
-            tm.setTotSemana("" + totSemana);
-
-            US3.tiempo.stop();
-            US3.dispose();
-
-            US3.centecimas_seg = 0;
-            US3.segundo = 0;
-            US3.minutos = 0;
-            US3.horas = 0;
-            totpagar3 = 0;
-
-            hora_entrada3 = "";
-        } else if (US4.minutos == 10) {
-            CobrarMaquina4();
-            try {
-
-                PreparedStatement pps = con.prepareStatement("UPDATE CiberNet SET Hora_salida= '" + lblReloj.getText() + "', Copias= '" + txtCopias.getText() + " Copias" + "', Total='" + "$" + totpagar + " Pesos" + "' WHERE Hora_entrada= '" + hora_entrada + "'");
-                pps.executeUpdate();
-
-                MostrarTabla("");
-
-            } catch (SQLException ex) {
-                Logger.getLogger(Ventana_Administrador.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            txtTotal.setText("$" + totpagar4 + " pesos ");
-            totSemana += totpagar4;
-
-            //Manda y guarda el contenido de la variable totalsemana
-            temporal tm = new temporal();
-            tm.setTotSemana("" + totSemana);
-
-            US4.tiempo.stop();
-            US4.dispose();
-
-            US4.centecimas_seg = 0;
-            US4.segundo = 0;
-            US4.minutos = 0;
-            US4.horas = 0;
-            totpagar4 = 0;
-
-            hora_entrada4 = "";
-        }
-    }
-
-    private void CobrarTreintaMinutos() {
-        if (US.minutos == 30) {
-            CobrarMaquina1();
-            try {
-
-                PreparedStatement pps = con.prepareStatement("UPDATE CiberNet SET Hora_salida= '" + lblReloj.getText() + "', Copias= '" + txtCopias.getText() + " Copias" + "', Total='" + "$" + totpagar + " Pesos" + "' WHERE Hora_entrada= '" + hora_entrada + "'");
-                pps.executeUpdate();
-
-                MostrarTabla("");
-
-            } catch (SQLException ex) {
-                Logger.getLogger(Ventana_Administrador.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            txtTotal.setText("$" + totpagar + " pesos ");
-            totSemana += totpagar;
-
-            //Manda y guarda el contenido de la variable totalsemana
-            temporal tm = new temporal();
-            tm.setTotSemana("" + totSemana);
-
-            US.tiempo.stop();
-            US.dispose();
-
-            US.centecimas_seg = 0;
-            US.segundo = 0;
-            US.minutos = 0;
-            US.horas = 0;
-            totpagar = 0;
-
-            hora_entrada = "";
-        } else if (US2.minutos == 30) {
+        } else if (US2.minutos == 20 && tiempo2.equals("20 minutos")) {
             CobrarMaquina2();
             try {
 
@@ -1114,8 +1066,9 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
             US2.horas = 0;
             totpagar2 = 0;
 
+            tiempo2 = "";
             hora_entrada2 = "";
-        } else if (US3.minutos == 30) {
+        } else if (US3.minutos == 20 && tiempo3.equals("20 minutos")) {
             CobrarMaquina3();
             try {
 
@@ -1144,8 +1097,9 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
             US3.horas = 0;
             totpagar3 = 0;
 
+            tiempo3 = "";
             hora_entrada3 = "";
-        } else if (US4.minutos == 30) {
+        } else if (US4.minutos == 20 && tiempo4.equals("20 minutos")) {
             CobrarMaquina4();
             try {
 
@@ -1174,12 +1128,141 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
             US4.horas = 0;
             totpagar4 = 0;
 
+            tiempo4 = "";
+            hora_entrada4 = "";
+        }
+    }
+
+    private void CobrarTreintaMinutos() {
+        if (US.minutos == 30 && tiempo.equals("30 minutos")) {
+            CobrarMaquina1();
+            try {
+
+                PreparedStatement pps = con.prepareStatement("UPDATE CiberNet SET Hora_salida= '" + lblReloj.getText() + "', Copias= '" + txtCopias.getText() + " Copias" + "', Total='" + "$" + totpagar + " Pesos" + "' WHERE Hora_entrada= '" + hora_entrada + "'");
+                pps.executeUpdate();
+
+                MostrarTabla("");
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Ventana_Administrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            txtTotal.setText("$" + totpagar + " pesos ");
+            totSemana += totpagar;
+
+            //Manda y guarda el contenido de la variable totalsemana
+            temporal tm = new temporal();
+            tm.setTotSemana("" + totSemana);
+
+            US.tiempo.stop();
+            US.dispose();
+
+            US.centecimas_seg = 0;
+            US.segundo = 0;
+            US.minutos = 0;
+            US.horas = 0;
+            totpagar = 0;
+
+            tiempo = "";
+            hora_entrada = "";
+        } else if (US2.minutos == 30 && tiempo2.equals("30 minutos")) {
+            CobrarMaquina2();
+            try {
+
+                PreparedStatement pps = con.prepareStatement("UPDATE CiberNet SET Hora_salida= '" + lblReloj.getText() + "', Copias= '" + txtCopias.getText() + " Copias" + "', Total='" + "$" + totpagar2 + " Pesos" + "' WHERE Hora_entrada= '" + hora_entrada2 + "'");
+                pps.executeUpdate();
+
+                MostrarTabla("");
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Ventana_Administrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            txtTotal.setText("$" + totpagar2 + " pesos ");
+            totSemana += totpagar2;
+
+            //Manda y guarda el contenido de la variable totalsemana
+            temporal tm = new temporal();
+            tm.setTotSemana("" + totSemana);
+
+            US2.tiempo.stop();
+            US2.dispose();
+
+            US2.centecimas_seg = 0;
+            US2.segundo = 0;
+            US2.minutos = 0;
+            US2.horas = 0;
+            totpagar2 = 0;
+
+            tiempo2 = "";
+            hora_entrada2 = "";
+        } else if (US3.minutos == 30 && tiempo3.equals("30 minutos")) {
+            CobrarMaquina3();
+            try {
+
+                PreparedStatement pps = con.prepareStatement("UPDATE CiberNet SET Hora_salida= '" + lblReloj.getText() + "', Copias= '" + txtCopias.getText() + " Copias" + "', Total='" + "$" + totpagar3 + " Pesos" + "' WHERE Hora_entrada= '" + hora_entrada3 + "'");
+                pps.executeUpdate();
+
+                MostrarTabla("");
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Ventana_Administrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            txtTotal.setText("$" + totpagar3 + " pesos ");
+            totSemana += totpagar3;
+
+            //Manda y guarda el contenido de la variable totalsemana
+            temporal tm = new temporal();
+            tm.setTotSemana("" + totSemana);
+
+            US3.tiempo.stop();
+            US3.dispose();
+
+            US3.centecimas_seg = 0;
+            US3.segundo = 0;
+            US3.minutos = 0;
+            US3.horas = 0;
+            totpagar3 = 0;
+
+            tiempo3 = "";
+            hora_entrada3 = "";
+        } else if (US4.minutos == 30 && tiempo4.equals("30 minutos")) {
+            CobrarMaquina4();
+            try {
+
+                PreparedStatement pps = con.prepareStatement("UPDATE CiberNet SET Hora_salida= '" + lblReloj.getText() + "', Copias= '" + txtCopias.getText() + " Copias" + "', Total='" + "$" + totpagar4 + " Pesos" + "' WHERE Hora_entrada= '" + hora_entrada4 + "'");
+                pps.executeUpdate();
+
+                MostrarTabla("");
+
+            } catch (SQLException ex) {
+                Logger.getLogger(Ventana_Administrador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            txtTotal.setText("$" + totpagar4 + " pesos ");
+            totSemana += totpagar4;
+
+            //Manda y guarda el contenido de la variable totalsemana
+            temporal tm = new temporal();
+            tm.setTotSemana("" + totSemana);
+
+            US4.tiempo.stop();
+            US4.dispose();
+
+            US4.centecimas_seg = 0;
+            US4.segundo = 0;
+            US4.minutos = 0;
+            US4.horas = 0;
+            totpagar4 = 0;
+
+            tiempo4 = "";
             hora_entrada4 = "";
         }
     }
 
     private void CobrarHora() {
-        if (US.horas == 1) {
+        if (US.horas == 1 && tiempo.equals("1 hora")) {
             CobrarMaquina1();
             try {
 
@@ -1209,7 +1292,7 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
             totpagar = 0;
 
             hora_entrada = "";
-        } else if (US2.horas == 1) {
+        } else if (US2.horas == 1 && tiempo2.equals("1 hora")) {
             CobrarMaquina2();
             try {
 
@@ -1239,7 +1322,7 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
             totpagar2 = 0;
 
             hora_entrada2 = "";
-        } else if (US3.horas == 1) {
+        } else if (US3.horas == 1 && tiempo3.equals("1 hora")) {
             CobrarMaquina3();
             try {
 
@@ -1269,7 +1352,7 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
             totpagar3 = 0;
 
             hora_entrada3 = "";
-        } else if (US4.horas == 1) {
+        } else if (US4.horas == 1 && tiempo4.equals("1 hora")) {
             CobrarMaquina4();
             try {
 
@@ -1449,7 +1532,7 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
             }
 
         } else {
-            JOptionPane.showMessageDialog(null, "Selecciona la maquina a cobrar correctamente");
+            JOptionPane.showMessageDialog(null, "Selecciona la máquina y/o copias a cobrar correctamente");
         }
 
 
@@ -1508,22 +1591,21 @@ public class Ventana_Administrador extends javax.swing.JFrame implements Runnabl
     @Override
     public void run() {
         Thread ct = Thread.currentThread();
-        
+
         while (ct == h1) {
+
             calcula();
             lblReloj.setText(hora + ":" + minuto + ":" + segundos + ":" + ampm);
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
             }
-           
-                CobrarDiezMinutos();
-                CobrarVeinteMinutos();
-                CobrarTreintaMinutos();
-                CobrarHora();
-            
+            CobrarDiezMinutos();
+            CobrarVeinteMinutos();
+            CobrarTreintaMinutos();
+            CobrarHora();
         }
-          
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
