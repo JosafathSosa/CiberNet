@@ -22,6 +22,7 @@ public class ConexionDB {
     static{
         try{
             Class.forName(DRIVER);
+            JOptionPane.showMessageDialog(null, "Bienvenido");
         }catch(ClassNotFoundException e){
             JOptionPane.showMessageDialog(null, "ERROR EN EL DRIVER: " + e);
         }
@@ -33,7 +34,7 @@ public class ConexionDB {
         
         try{
             con = DriverManager.getConnection(URL,USUARIO,PASSWORD);
-            JOptionPane.showMessageDialog(null, "Bienvenido");
+           
         } catch(SQLException e){
              JOptionPane.showMessageDialog(null, "ERROR EN EL DRIVER: " + e);
         }
